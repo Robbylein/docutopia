@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
 function Leaflet() {
   return (
     <div id="map" className="Leaflet">
-      <MapContainer style={{ height: "900px", width: "97.5%" }} center={[51.505, -0.09]} zoom={13}>
+      <MapContainer style={{ height: "100vh",   width: "100vw" }} center={[51.505, -0.09]} zoom={13}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
