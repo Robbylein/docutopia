@@ -30,7 +30,7 @@ function Leaflet() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <LayersControl.Overlay name="Places">
+        <LayersControl.Overlay checked name="Places">
         <MarkerClusterGroup>
           <Async promiseFn={loadPlaces}>
            {({ data, error, isPending }) => {
@@ -51,7 +51,7 @@ function Leaflet() {
         </Async>
       </MarkerClusterGroup>
       </LayersControl.Overlay>
-      <LayersControl.Overlay name="Events">
+      <LayersControl.Overlay checked name="Events">
       <MarkerClusterGroup>
         <Async promiseFn={loadEvents}>
          {({ data, error, isPending }) => {
