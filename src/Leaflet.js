@@ -28,13 +28,14 @@ function Leaflet() {
         <Async promiseFn={loadPlaces}>
          {({ data, error, isPending }) => {
           if (isPending) console.log("Loading...");
-          if (error) console.log(`Something went wrong: ${error.message}`); 
+          if (error) console.log(`Something went wrong: ${error.message}`);
           if (data)
             return (
               (data.data).map((place) => (
                 <Marker key={place.id} position={[place.position.coordinates[1],place.position.coordinates[0]]}>
                   <Popup>
-                    {place.name}
+                    <h3>{place.name}</h3>
+                    <p>{place.text}</p>
                   </Popup>
                 </Marker>
               ))
