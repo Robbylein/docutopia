@@ -7,20 +7,19 @@ import FloatingActionButton from './FloatingActionButton';
 function App() {
 
 
-
   return (
     <div className="App">
-      <NavBar className="nav" />
+      <NavBar id="nav"/>
       <Leaflet />
       <FloatingActionButton />
     </div>
   );
 }
 
-/*
+
 function setMapHeight() {
   var window_height = window.innerHeight;
-  var header_height = document.getElementsByClassName("nav").clientHeight;
+  var header_height = 64;
   console.log("Window: " + window_height);
   console.log("Header: " + header_height);
   document.getElementById("map").style.height = window_height - header_height + "px";
@@ -28,6 +27,6 @@ function setMapHeight() {
 
 window.addEventListener('resize', (event) => setMapHeight())
 window.addEventListener('touchmove', (event) => setMapHeight())
-*/
+
 
 export default App;
