@@ -25,7 +25,7 @@ function Leaflet() {
   return (
     <div id="map" className="Leaflet">
       <MapContainer style={{ height: "100vh",   width: "100vw" }} center={[51.3, 9.6]} zoom={8}>
-        <LayersControl position="topright" collapsed="false">
+        <LayersControl position="topright">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from './NavBar';
 import Leaflet from './Leaflet';
-import FloatingActionButton from './FloatingActionButton';
+import MySpeedDial from './MySpeedDial';
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <NavBar id="nav"/>
       <Leaflet />
-      <FloatingActionButton />
+      <MySpeedDial />
     </div>
   );
 }
