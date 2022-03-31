@@ -23,9 +23,9 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
 }));
 
 const actions = [
-  { icon: <PlaceIcon />, name: 'Add Place' },
-  { icon: <EventIcon />, name: 'Add Event' },
-  { icon: <PersonIcon />, name: 'Set my Position' },
+  { icon: <PlaceIcon />, name: 'Add Place', color: '#2E7D32' },
+  { icon: <EventIcon />, name: 'Add Event', color: '#f9a825' },
+  { icon: <PersonIcon />, name: 'Set my Position', color: '#C62828' },
 ];
 
 export default function MySpeedDial() {
@@ -61,6 +61,15 @@ export default function MySpeedDial() {
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
+              FabProps={{
+                sx: {
+                  color: '#FFF',
+                  bgcolor: action.color,
+                  '&:hover': {
+                    bgcolor: action.color,
+                  }
+                }
+              }}
             />
           ))}
         </StyledSpeedDial>

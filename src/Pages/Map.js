@@ -1,4 +1,4 @@
-import './Leaflet.css';
+import './Map.css';
 import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css'; // sass
 import { MapContainer, TileLayer, LayerGroup,  LayersControl, Marker, Popup } from 'react-leaflet'
@@ -6,6 +6,9 @@ import { Directus } from '@directus/sdk';
 import { Async } from "react-async";
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+import {useEffect} from 'react';
+import MySpeedDial from '../Components/MySpeedDial';
+
 
 const directus = new Directus('https://zeitgeist.healing-the-planet.one');
 
@@ -21,7 +24,13 @@ const loadPlaces = () => directus.items('Places').readByQuery({ meta: 'total_cou
 const loadEvents = () => directus.items('Events').readByQuery({ meta: 'total_count' });
 
 
-function Leaflet() {
+
+const Map = () => {
+
+  useEffect(() => {
+    setMapHeight()
+  })
+
   return (
     <div id="map" className="Leaflet">
       <MapContainer style={{ height: "100vh",   width: "100vw" }} center={[51.3, 9.6]} zoom={8}>
@@ -74,8 +83,20 @@ function Leaflet() {
     </LayersControl.Overlay>
       </LayersControl>
       </MapContainer>
+      <MySpeedDial />
+
     </div>
   )
 }
 
-export default Leaflet;
+export default Map;
+
+
+function setMapHeight() {
+  var window_height = window.innerHeight;
+  var header_height = 56;
+  document.getElementById("map").style.height = window_height - header_height + "px";
+}
+
+window.addEventListener('resize', (event) => setMapHeight())
+window.addEventListener('touchmove', (event) => setMapHeight())
