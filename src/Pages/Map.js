@@ -1,4 +1,3 @@
-import './Map.css';
 import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css'; // sass
 import { MapContainer, TileLayer, LayerGroup,  LayersControl, Marker, Popup } from 'react-leaflet'
@@ -50,7 +49,7 @@ const Map = () => {
                 (data.data).map((place) => (
                   <Marker key={place.id} position={[place.position.coordinates[1],place.position.coordinates[0]]}>
                     <Popup>
-                      <h3>{place.name}</h3>
+                      <h2>{place.name}</h2>
                       <p>{place.text}</p>
                     </Popup>
                   </Marker>
@@ -70,7 +69,7 @@ const Map = () => {
             return (
               (data.data).map((event) => (
                 <Marker key={event.id} position={[event.position.coordinates[1],event.position.coordinates[0]]}>
-                  <Popup>
+                  <Popup className="event-popup">
                     <h3>{event.name}</h3>
                     <p>{event.text}</p>
                   </Popup>

@@ -1,5 +1,4 @@
 import { Routes, Route, Link } from "react-router-dom";
-import './App.css';
 import NavBar from './Components/NavBar';
 import Map from './Pages/Map';
 import NotFound from './Pages/NotFound';
