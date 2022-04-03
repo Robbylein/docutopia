@@ -1,19 +1,11 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import Switch from '@mui/material/Switch';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import EventIcon from '@mui/icons-material/Event';
 import PlaceIcon from '@mui/icons-material/Place';
 import PersonIcon from '@mui/icons-material/Person';
-import ShareIcon from '@mui/icons-material/Share';
 
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   position: 'absolute',
@@ -28,7 +20,7 @@ const actions = [
   { icon: <PersonIcon />, name: 'Set my Position', color: '#C62828' },
 ];
 
-export default function MySpeedDial() {
+export default function SpeedDialButton() {
   const [direction, setDirection] = React.useState('up');
   const [hidden, setHidden] = React.useState(false);
 

@@ -5,12 +5,12 @@ import Container from '@mui/material/Container';
 //const directus = new Directus('https://zeitgeist.healing-the-planet.one');
 
 
-const Profile = () => {
+const Calendar = () => {
   return (
     <Container>
-      <h1>Franz</h1>
+      <h1>Calendar</h1>
     </Container>
   )
 }
 
-export default Profile;
+export default Calendar;

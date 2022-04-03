@@ -1,16 +1,19 @@
 //import { Directus } from '@directus/sdk';
 //import { Async } from "react-async";
+import * as React from 'react';
 import Container from '@mui/material/Container';
+
 
 //const directus = new Directus('https://zeitgeist.healing-the-planet.one');
 
 
-const Profile = () => {
+const Quests = () => {
+
   return (
     <Container>
-      <h1>Franz</h1>
+      <h1>Quests</h1>
     </Container>
   )
 }
 
-export default Profile;
+export default Quests;

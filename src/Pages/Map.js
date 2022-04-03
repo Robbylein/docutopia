@@ -6,7 +6,7 @@ import { Async } from "react-async";
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import {useEffect} from 'react';
-import MySpeedDial from '../Components/MySpeedDial';
+import SpeedDialButton from '../Components/Map/SpeedDialButton';
 
 
 const directus = new Directus('https://zeitgeist.healing-the-planet.one');
@@ -82,7 +82,7 @@ const Map = () => {
     </LayersControl.Overlay>
       </LayersControl>
       </MapContainer>
-      <MySpeedDial />
+      <SpeedDialButton />
 
     </div>
   )
