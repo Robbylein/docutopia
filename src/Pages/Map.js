@@ -8,7 +8,7 @@ import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import {useEffect} from 'react';
 import SpeedDialButton from '../Components/Map/SpeedDialButton';
-import {EventIcon,PlaceIcon} from '../Components/Map/Icons';
+import IconFactory from '../Components/Map/Icons';
 
 
 const directus = new Directus('https://zeitgeist.healing-the-planet.one');
@@ -26,7 +26,6 @@ const loadEvents = () => directus.items('Events').readByQuery({ meta: 'total_cou
 
 
 const Map = () => {
-
   useEffect(() => {
     setMapHeight()
   })
@@ -48,7 +47,7 @@ const Map = () => {
             if (data)
               return (
                 (data.data).map((place) => (
-                  <Marker icon={PlaceIcon} key={place.id} position={[place.position.coordinates[1],place.position.coordinates[0]]}>
+                  <Marker icon={IconFactory('star','#f18e1c','RGBA(35, 31, 32, 0.2)','circle-solid')} key={place.id} position={[place.position.coordinates[1],place.position.coordinates[0]]}>
                     <Popup>
                       <h2>{place.name}</h2>
                       <p>{place.text}</p>
@@ -69,7 +68,7 @@ const Map = () => {
           if (data)
             return (
               (data.data).map((event) => (
-                <Marker icon={EventIcon} key={event.id} position={[event.position.coordinates[1],event.position.coordinates[0]]}>
+                <Marker icon={IconFactory('square','#6d398b','RGBA(35, 31, 32, 0.2)','calendar-days-solid')} key={event.id} position={[event.position.coordinates[1],event.position.coordinates[0]]}>
                   <Popup className="event-popup">
                     <h3>{event.name}</h3>
                     <p>{event.text}</p>

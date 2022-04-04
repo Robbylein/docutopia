@@ -6,6 +6,7 @@
     "@directus/sdk": "^9.6.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@mui/icons-material": "^5.5.0",
     "@mui/material": "^5.5.0",
