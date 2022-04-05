@@ -8,8 +8,9 @@ import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import {useEffect} from 'react';
 import SpeedDialButton from '../Components/Map/SpeedDialButton';
-import IconFactory from '../Components/Map/Icons';
-
+import IconFactory from '../Components/Map/IconFactory';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 const directus = new Directus('https://zeitgeist.healing-the-planet.one');
 
@@ -21,8 +22,8 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const loadPlaces = () => directus.items('Places').readByQuery({ meta: 'total_count' });
-const loadEvents = () => directus.items('Events').readByQuery({ meta: 'total_count' });
+const loadPlaces = () => directus.items('Places').readByQuery({fields: '*.Tags_id'  });
+const loadEvents = () => directus.items('Events').readByQuery({fields: '*.Tags_id' });
 
 
 const Map = () => {
@@ -44,17 +45,21 @@ const Map = () => {
            {({ data, error, isPending }) => {
             if (isPending) console.log("Loading Places ...");
             if (error) console.log(`Something went wrong: ${error.message}`);
-            if (data)
+            if (data) {
+            //  console.log(data);
               return (
                 (data.data).map((place) => (
-                  <Marker icon={IconFactory('star','#f18e1c','RGBA(35, 31, 32, 0.2)','circle-solid')} key={place.id} position={[place.position.coordinates[1],place.position.coordinates[0]]}>
+                  <Marker icon={IconFactory('penta','#f18e1c','RGBA(35, 31, 32, 0.2)','circle-solid')} key={place.id} position={[place.position.coordinates[1],place.position.coordinates[0]]}>
                     <Popup>
                       <h2>{place.name}</h2>
                       <p>{place.text}</p>
+                      <Stack direction="row" spacing={1}>
+                        {place.tags.map((tag)=>(<Chip key={tag.Tags_id}  label={tag.Tags_id} />))}
+                      </Stack>
                     </Popup>
                   </Marker>
                 ))
-              )
+              )}
           }}
         </Async>
       </MarkerClusterGroup>
@@ -72,6 +77,9 @@ const Map = () => {
                   <Popup className="event-popup">
                     <h3>{event.name}</h3>
                     <p>{event.text}</p>
+                    <Stack direction="row" spacing={1}>
+                      {event.tags.map((tag)=>(<Chip key={tag.Tags_id}  label={tag.Tags_id} />))}
+                    </Stack>
                   </Popup>
                 </Marker>
               ))

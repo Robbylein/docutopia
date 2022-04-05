@@ -11,7 +11,6 @@ import IconButton from '@mui/material/IconButton';
 import NavBarMenuRight from './NavBarMenuRight'
 
 
-
 const Search = styled('div')(({ theme }) => ({
 position: 'relative',
 borderRadius: theme.shape.borderRadius,

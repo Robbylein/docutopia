@@ -13,7 +13,7 @@ const createSvg = (shape, markerColor, borderColor) => {
 const IconFactory = (shape, color1, color2, icon) =>
 {
     return new L.divIcon({
-      html: `${createSvg(shape,color1,color2)}<img class="svg-${shape}-icon" src="${process.env.PUBLIC_URL}/${icon}.svg" />`,
+      html: `${createSvg(shape, color1, color2)}<img class="svg-${shape}-icon" src="${process.env.PUBLIC_URL}/fa-svgs/${icon}.svg" />`,
       iconAnchor: [17,40],
       popupAnchor: [-2,-45],
       iconSize: new L.Point(40, 46),
@@ -21,7 +21,5 @@ const IconFactory = (shape, color1, color2, icon) =>
       shadowAnchor: [0, 0]
     });
 }
-
-
 
 export default IconFactory ;
