@@ -1,16 +1,15 @@
 import 'leaflet/dist/leaflet.css';
 import './Map.css'
 import 'react-leaflet-markercluster/dist/styles.min.css'; // sass
-import { MapContainer, TileLayer, LayerGroup,  LayersControl, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer,  LayersControl, Marker } from 'react-leaflet'
+import MarkerPopup from '../Components/Map/MarkerPopup'
 import { Directus } from '@directus/sdk';
 import { Async } from "react-async";
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import {useEffect} from 'react';
 import SpeedDialButton from '../Components/Map/SpeedDialButton';
-import IconFactory from '../Components/Map/IconFactory';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+import MarkerIconFactory from '../Utils/MarkerIconFactory';
 
 const directus = new Directus('https://zeitgeist.healing-the-planet.one');
 
@@ -22,8 +21,8 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const loadPlaces = () => directus.items('Places').readByQuery({fields: '*.Tags_id'  });
-const loadEvents = () => directus.items('Events').readByQuery({fields: '*.Tags_id' });
+const loadPlaces = () => directus.items('Places').readByQuery({fields: '*.Tags_id.color,*.Tags_id.id'  });
+const loadEvents = () => directus.items('Events').readByQuery({fields: '*.Tags_id.color,*.Tags_id.id' });
 
 
 const Map = () => {
@@ -46,17 +45,12 @@ const Map = () => {
             if (isPending) console.log("Loading Places ...");
             if (error) console.log(`Something went wrong: ${error.message}`);
             if (data) {
-            //  console.log(data);
+            console.log(data);
               return (
                 (data.data).map((place) => (
-                  <Marker icon={IconFactory('penta','#f18e1c','RGBA(35, 31, 32, 0.2)','circle-solid')} key={place.id} position={[place.position.coordinates[1],place.position.coordinates[0]]}>
-                    <Popup>
-                      <h2>{place.name}</h2>
-                      <p>{place.text}</p>
-                      <Stack direction="row" spacing={1}>
-                        {place.tags.map((tag)=>(<Chip key={tag.Tags_id}  label={tag.Tags_id} />))}
-                      </Stack>
-                    </Popup>
+                  <Marker icon={MarkerIconFactory('penta','#f18e1c','RGBA(35, 31, 32, 0.2)','circle-solid')} key={place.id} position={[place.position.coordinates[1],place.position.coordinates[0]]}>
+                    <MarkerPopup item={place}>
+                    </MarkerPopup>
                   </Marker>
                 ))
               )}
@@ -73,14 +67,9 @@ const Map = () => {
           if (data)
             return (
               (data.data).map((event) => (
-                <Marker icon={IconFactory('square','#6d398b','RGBA(35, 31, 32, 0.2)','calendar-days-solid')} key={event.id} position={[event.position.coordinates[1],event.position.coordinates[0]]}>
-                  <Popup className="event-popup">
-                    <h3>{event.name}</h3>
-                    <p>{event.text}</p>
-                    <Stack direction="row" spacing={1}>
-                      {event.tags.map((tag)=>(<Chip key={tag.Tags_id}  label={tag.Tags_id} />))}
-                    </Stack>
-                  </Popup>
+                <Marker icon={MarkerIconFactory('square','#6d398b','RGBA(35, 31, 32, 0.2)','calendar-days-solid')} key={event.id} position={[event.position.coordinates[1],event.position.coordinates[0]]}>
+                  <MarkerPopup item={event}>
+                  </MarkerPopup>
                 </Marker>
               ))
             )

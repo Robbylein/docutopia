@@ -10,16 +10,16 @@ const createSvg = (shape, markerColor, borderColor) => {
     return svgMap[shape];
 }
 
-const IconFactory = (shape, color1, color2, icon) =>
+const MarkerIconFactory = (shape, color1, color2, icon) =>
 {
     return new L.divIcon({
       html: `${createSvg(shape, color1, color2)}<img class="svg-${shape}-icon" src="${process.env.PUBLIC_URL}/fa-svgs/${icon}.svg" />`,
       iconAnchor: [17,40],
-      popupAnchor: [-2,-45],
+      popupAnchor: [0,-40],
       iconSize: new L.Point(40, 46),
       className: "leaflet-data-marker",
       shadowAnchor: [0, 0]
     });
 }
 
-export default IconFactory ;
+export default MarkerIconFactory ;
