@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import EventIcon from '@mui/icons-material/Event';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PlaceIcon from '@mui/icons-material/Place';
 import PersonIcon from '@mui/icons-material/Person';
 
@@ -14,13 +14,13 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   color: theme.secondary,
 }));
 
-const actions = [
-  { icon: <PlaceIcon />, name: 'Add Place', color: '#2E7D32' },
-  { icon: <EventIcon />, name: 'Add Event', color: '#f9a825' },
-  { icon: <PersonIcon />, name: 'Set my Position', color: '#C62828' },
+const layergroups = [
+  { type: 'place', icon: <PlaceIcon />, name: 'Add Place', color: '#2E7D32' },
+  { type: 'event', icon: <CalendarMonthIcon />, name: 'Add Event', color: '#f9a825' },
+  { type: 'profile', icon: <PersonIcon />, name: 'Set my Position', color: '#C62828' },
 ];
 
-export default function SpeedDialButton() {
+export default function SpeedDialButton(props) {
   const [direction, setDirection] = React.useState('up');
   const [hidden, setHidden] = React.useState(false);
 
@@ -48,17 +48,18 @@ export default function SpeedDialButton() {
             }
           }}
         >
-          {actions.map((action) => (
+          {layergroups.map((layergroup) => (
             <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
+              key={layergroup.name}
+              icon={layergroup.icon}
+              tooltipTitle={layergroup.name}
+              onClick={() => {props.setSelectPosition({type: layergroup.type})}}
               FabProps={{
                 sx: {
                   color: '#FFF',
-                  bgcolor: action.color,
+                  bgcolor: layergroup.color,
                   '&:hover': {
-                    bgcolor: action.color,
+                    bgcolor: layergroup.color,
                   }
                 }
               }}
